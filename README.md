@@ -1,16 +1,39 @@
 # sca_shopper
 
-A new Flutter project.
+A Flutter-based shopping application utilizing the Fake Store API. This app provides a seamless shopping experience with features like user authentication, product categorization, and price conversion.
 
-## Getting Started
+## Features✨
 
-This project is a starting point for a Flutter application.
+- User Authentication: Secure login system to personalize the shopping experience.
+- Product Categories: Browse products by categories for easy navigation.
+- Product Details: Detailed information about each product.
+- Price Conversion: Easily toggle between Naira (₦) and Dollar ($) with a single button click.
 
-A few resources to get you started if this is your first Flutter project:
+## Screenshots 📸
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## A video showcasing the app's functionality 🎥
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Installation 🚀
+To set up the project locally, follow these steps:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/FavourTy/shopper_app
+
+2. Navigate to the project directory:
+   ```bash
+   cd shopper_app
+
+3. Install the required dependencies:
+   ```bash
+   flutter pub get 
+
+4. Run the app:
+   ```bash
+   flutter run
+
+## Technologies Used 🛠️
+
+- Flutter
+- Dart
+- Fake Store API 
