@@ -4,6 +4,7 @@ import 'package:sca_shopper/shared/Navigation/app_route_strings.dart';
 import 'package:sca_shopper/shared/Navigation/app_router.dart';
 import 'package:sca_shopper/shared/colors.dart';
 import 'package:sca_shopper/shared/constants.dart';
+import 'package:sca_shopper/shared/custom_widget/custom_listtile.dart';
 
 import '../../../repository/api_repository.dart';
 
@@ -85,44 +86,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemBuilder: (_, i) {
                           final each = snapshot.data?.cats?[i];
 
-                          return ListTile(
-                              contentPadding:
-                                  const EdgeInsets.symmetric(vertical: 15),
-                              onTap: () {
+                          return CustomListTile(
+                              ontap: () {
                                 AppRouter.push(
                                     AppRouteStrings.productListScreen,
                                     arg: each);
                               },
-                              leading: ClipRRect(
-                                borderRadius: BorderRadius.circular(50),
-                                child: Image.network(
-                                  each?.image ?? "",
-                                  height: 50,
-                                  width: 50,
-                                  errorBuilder: (_, __, ___) {
-                                    return Container(
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color:
-                                              AppColors.black.withOpacity(.1)),
-                                      height: 50,
-                                      width: 50,
-                                      child: Icon(
-                                        Icons.image_not_supported,
-                                        color: AppColors.black.withOpacity(.3),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ),
-                              title: Text(
-                                each?.name ?? "",
-                                style: style.copyWith(
-                                  fontWeight: FontWeight.w600,
-                                  color: AppColors.appColor,
-                                  fontSize: 15,
-                                ),
-                              ));
+                              image: each?.image ?? "",
+                              text: each?.name ?? "");
                         },
                         separatorBuilder: (_, __) => Divider(
                               height: 0,
