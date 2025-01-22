@@ -63,4 +63,21 @@ class ApiRepository {
       return (products: null, error: req.error);
     }
   }
+
+  Future<({List<ProductModel>? products, String? error})> fetchProducts(
+      String id) async {
+    final req = await apiService.get(
+        endpoint: "api/v1/products?limit=100&offset=0");
+    if (req.data != null) {
+      final data = req.data as List;
+      final listOfProducts =
+          List<ProductModel>.from(data.map((e) => ProductModel.fromJson(e)));
+      return (products: listOfProducts, error: null);
+    } else {
+      return (products: null, error: req.error);
+    }
+  }
 }
+
+
+

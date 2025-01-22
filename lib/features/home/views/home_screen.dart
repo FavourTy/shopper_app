@@ -83,9 +83,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   }
                   return Expanded(
                     child: ListView.separated(
+                        physics: NeverScrollableScrollPhysics(),
                         itemBuilder: (_, i) {
                           final each = snapshot.data?.cats?[i];
-
                           return CustomListTile(
                               ontap: () {
                                 AppRouter.push(
@@ -95,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               image: each?.image ?? "",
                               text: each?.name ?? "");
                         },
-                        separatorBuilder: (_, __) => Divider(
+                        separatorBuilder: (_, __) => const Divider(
                               height: 0,
                             ),
                         itemCount: snapshot.data?.cats?.length ?? 0),
