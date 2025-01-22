@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sca_shopper/models/response_model/category_model.dart';
 import 'package:sca_shopper/shared/colors.dart';
-import 'package:sca_shopper/shared/custom_widget/custom_listtile.dart';
-
 import '../../../repository/api_repository.dart';
 import '../../../shared/Navigation/app_route_strings.dart';
 import '../../../shared/Navigation/app_router.dart';
@@ -19,6 +17,7 @@ class ProductListScreen extends StatefulWidget {
 
 class _ProductListScreenState extends State<ProductListScreen> {
   final apiRepo = ApiRepository();
+  bool isNaira = true;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +32,16 @@ class _ProductListScreenState extends State<ProductListScreen> {
               color: AppColors.white,
             ),
           ),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  setState(() {
+                    isNaira = !isNaira;
+                  });
+                },
+                icon: Icon(
+                    isNaira ? Icons.currency_exchange : Icons.attach_money))
+          ],
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -66,17 +75,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                     child: ListView.separated(
                         itemBuilder: (_, i) {
                           final each = snapshot.data?.products?[i];
-                          // return CustomListTile(
-                          //   ontap: () {
-                          //     AppRouter.push(
-                          //         AppRouteStrings.productDetailsScreen,
-                          //         arg: each);
-                          //   },
-                          //   image: each?.images?.firstOrNull ?? "",
-                          //   trailingText: each?.price?.convertToNaira() ?? "",
-                          //   text: each?.title ?? "",
-                          //   descriptionText: each?.description ?? "",
-                          // );
+
                           return ListTile(
                               contentPadding:
                                   const EdgeInsets.symmetric(vertical: 15),
@@ -108,7 +107,9 @@ class _ProductListScreenState extends State<ProductListScreen> {
                                 ),
                               ),
                               trailing: Text(
-                                each?.price?.convertToNaira() ?? "",
+                                isNaira
+                                    ? (each?.price?.convertToNaira() ?? "")
+                                    : (each?.price != null ? "" : ""),
                                 style: style.copyWith(
                                   fontWeight: FontWeight.w600,
                                   color: AppColors.black,
