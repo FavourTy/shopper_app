@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-
-import '../Navigation/app_route_strings.dart';
-import '../Navigation/app_router.dart';
 import '../colors.dart';
 import '../constants.dart';
 
@@ -10,10 +7,14 @@ class CustomListTile extends StatelessWidget {
       {super.key,
       required this.ontap,
       required this.image,
-      required this.text});
+      required this.text,
+      this.trailingText,
+      this.descriptionText});
   final VoidCallback ontap;
   final String image;
   final String text;
+  final String? trailingText;
+  final String? descriptionText;
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -40,13 +41,44 @@ class CustomListTile extends StatelessWidget {
             },
           ),
         ),
-        title: Text(
-          text,
+        trailing: Text(
+          trailingText!,
           style: style.copyWith(
             fontWeight: FontWeight.w600,
-            color: AppColors.appColor,
-            fontSize: 15,
+            color: AppColors.black,
+            fontSize: 16,
           ),
+        ),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              text,
+              style: style.copyWith(
+                fontWeight: FontWeight.w600,
+                color: AppColors.black,
+                fontSize: 14,
+              ),
+            ),
+            Text(
+              descriptionText!,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: style.copyWith(
+                fontWeight: FontWeight.w400,
+                color: AppColors.black.withOpacity(.4),
+                fontSize: 12,
+              ),
+            ),
+          ],
         ));
+    // title: Text(
+    //   text,
+    //   style: style.copyWith(
+    //     fontWeight: FontWeight.w600,
+    //     color: AppColors.appColor,
+    //     fontSize: 15,
+    //   ),
+    // ));
   }
 }
