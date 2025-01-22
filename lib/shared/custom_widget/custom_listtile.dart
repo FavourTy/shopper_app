@@ -41,36 +41,21 @@ class CustomListTile extends StatelessWidget {
             },
           ),
         ),
-        trailing: Text(
-          trailingText!,
+        // trailing: Text(
+        //   trailingText!,
+        //   style: style.copyWith(
+        //     fontWeight: FontWeight.w600,
+        //     color: AppColors.black,
+        //     fontSize: 16,
+        //   ),
+        // ),
+        title: Text(
+          text,
           style: style.copyWith(
             fontWeight: FontWeight.w600,
             color: AppColors.black,
-            fontSize: 16,
+            fontSize: 14,
           ),
-        ),
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              text,
-              style: style.copyWith(
-                fontWeight: FontWeight.w600,
-                color: AppColors.black,
-                fontSize: 14,
-              ),
-            ),
-            Text(
-              descriptionText!,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: style.copyWith(
-                fontWeight: FontWeight.w400,
-                color: AppColors.black.withOpacity(.4),
-                fontSize: 12,
-              ),
-            ),
-          ],
         ));
     // title: Text(
     //   text,

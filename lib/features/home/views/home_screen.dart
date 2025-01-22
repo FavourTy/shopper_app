@@ -47,10 +47,11 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
           automaticallyImplyLeading: false,
         ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: SingleChildScrollView(
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(
@@ -78,9 +79,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         builder: (_, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
-                            setState(() {
-                              isLoading = true;
-                            });
+                            // setState(() {
+                            //   isLoading = true;
+                            // });
                             return const Center(
                                 child: CircularProgressIndicator(
                               valueColor:
@@ -95,11 +96,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                   "Could not fetch categories"),
                             );
                           }
-                          setState(() {
-                            isLoading = true;
-                          });
+                          // setState(() {
+                          //   isLoading = false;
+                          // });
                           return ListView.separated(
-                              physics: NeverScrollableScrollPhysics(),
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
                               itemBuilder: (_, i) {
                                 final each = snapshot.data?.cats?[i];
                                 return CustomListTile(
@@ -118,11 +120,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                         future: apiRepo.fetchCategories(),
                       ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Text(
-                  "Products",
+                  "All Products",
                   style: style.copyWith(
                     fontSize: 20,
                     color: AppColors.black,
@@ -143,9 +145,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         builder: (_, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
-                            setState(() {
-                              isLoading = true;
-                            });
+                            // setState(() {
+                            //   isLoading = true;
+                            // });
                             return const Center(
                                 child: CircularProgressIndicator(
                               valueColor:
@@ -160,24 +162,23 @@ class _HomeScreenState extends State<HomeScreen> {
                                   "Could not fetch categories"),
                             );
                           }
-                          setState(() {
-                            isLoading = true;
-                          });
+                          // setState(() {
+                          //   isLoading = false;
+                          // });
                           return ListView.separated(
-                              physics: NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
                               itemBuilder: (_, i) {
                                 final each = snapshot.data?.products?[i];
+
                                 return CustomListTile(
                                   ontap: () {
                                     AppRouter.push(
                                         AppRouteStrings.productDetailsScreen,
                                         arg: each);
                                   },
-                                  trailingText:
-                                      each?.price?.convertToNaira() ?? "",
                                   image: each?.images?.firstOrNull ?? "",
                                   text: each?.title ?? "",
-                                  descriptionText: each?.description ?? "",
                                 );
                               },
                               separatorBuilder: (_, __) => const Divider(

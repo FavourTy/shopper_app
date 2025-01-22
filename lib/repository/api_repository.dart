@@ -65,7 +65,7 @@ class ApiRepository {
   }
 
   Future<({List<ProductModel>? products, String? error})> fetchProducts(
-      String id) async {
+      ) async {
     final req = await apiService.get(
         endpoint: "api/v1/products?limit=100&offset=0");
     if (req.data != null) {

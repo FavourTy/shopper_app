@@ -24,7 +24,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          iconTheme: IconThemeData(color: AppColors.white),
+          iconTheme: const IconThemeData(color: AppColors.white),
           backgroundColor: AppColors.appColor,
           title: Text(
             widget.categoryModel?.name ?? "Product List",
@@ -66,80 +66,80 @@ class _ProductListScreenState extends State<ProductListScreen> {
                     child: ListView.separated(
                         itemBuilder: (_, i) {
                           final each = snapshot.data?.products?[i];
-                          return CustomListTile(
-                            ontap: () {
-                              AppRouter.push(
-                                  AppRouteStrings.productDetailsScreen,
-                                  arg: each);
-                            },
-                            image: each?.images?.firstOrNull ?? "",
-                            trailingText: each?.price?.convertToNaira() ?? "",
-                            text: each?.title ?? "",
-                            descriptionText: each?.description ?? "",
-                          );
-                          // return ListTile(
-                          //     contentPadding:
-                          //         const EdgeInsets.symmetric(vertical: 15),
-                          //     onTap: () {
-                          //       AppRouter.push(
-                          //           AppRouteStrings.productDetailsScreen,
-                          //           arg: each);
-                          //     },
-                          //     leading: ClipRRect(
-                          //       borderRadius: BorderRadius.circular(50),
-                          //       child: Image.network(
-                          //         each?.images?.firstOrNull ?? "",
-                          //         height: 50,
-                          //         width: 50,
-                          //         errorBuilder: (_, __, ___) {
-                          //           return Container(
-                          //             decoration: BoxDecoration(
-                          //                 shape: BoxShape.circle,
-                          //                 color:
-                          //                     AppColors.black.withOpacity(.1)),
-                          //             height: 50,
-                          //             width: 50,
-                          //             child: Icon(
-                          //               Icons.image_not_supported,
-                          //               color: AppColors.black.withOpacity(.3),
-                          //             ),
-                          //           );
-                          //         },
-                          //       ),
-                          //     ),
-                          //     trailing: Text(
-                          //       each?.price?.convertToNaira() ?? "",
-                          //       style: style.copyWith(
-                          //         fontWeight: FontWeight.w600,
-                          //         color: AppColors.black,
-                          //         fontSize: 16,
-                          //       ),
-                          //     ),
-                          //     title: Column(
-                          //       crossAxisAlignment: CrossAxisAlignment.start,
-                          //       children: [
-                          //         Text(
-                          //           each?.title ?? "",
-                          //           style: style.copyWith(
-                          //             fontWeight: FontWeight.w600,
-                          //             color: AppColors.black,
-                          //             fontSize: 14,
-                          //           ),
-                          //         ),
-                          //         Text(
-                          //           each?.description ?? "",
-                          //           maxLines: 2,
-                          //           overflow: TextOverflow.ellipsis,
-                          //           style: style.copyWith(
-                          //             fontWeight: FontWeight.w400,
-                          //             color: AppColors.black.withOpacity(.4),
-                          //             fontSize: 12,
-                          //           ),
-                          //         ),
-                          //       ],
-                          //     ));
+                          // return CustomListTile(
+                          //   ontap: () {
+                          //     AppRouter.push(
+                          //         AppRouteStrings.productDetailsScreen,
+                          //         arg: each);
+                          //   },
+                          //   image: each?.images?.firstOrNull ?? "",
+                          //   trailingText: each?.price?.convertToNaira() ?? "",
+                          //   text: each?.title ?? "",
+                          //   descriptionText: each?.description ?? "",
+                          // );
+                          return ListTile(
+                              contentPadding:
+                                  const EdgeInsets.symmetric(vertical: 15),
+                              onTap: () {
+                                AppRouter.push(
+                                    AppRouteStrings.productDetailsScreen,
+                                    arg: each);
+                              },
+                              leading: ClipRRect(
+                                borderRadius: BorderRadius.circular(50),
+                                child: Image.network(
+                                  each?.images?.firstOrNull ?? "",
+                                  height: 50,
+                                  width: 50,
+                                  errorBuilder: (_, __, ___) {
+                                    return Container(
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color:
+                                              AppColors.black.withOpacity(.1)),
+                                      height: 50,
+                                      width: 50,
+                                      child: Icon(
+                                        Icons.image_not_supported,
+                                        color: AppColors.black.withOpacity(.3),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                              trailing: Text(
+                                each?.price?.convertToNaira() ?? "",
+                                style: style.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColors.black,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              title: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    each?.title ?? "",
+                                    style: style.copyWith(
+                                      fontWeight: FontWeight.w600,
+                                      color: AppColors.black,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                  Text(
+                                    each?.description ?? "",
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: style.copyWith(
+                                      fontWeight: FontWeight.w400,
+                                      color: AppColors.black.withOpacity(.4),
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ],
+                              ));
                         },
-                        separatorBuilder: (_, __) => Divider(
+                        separatorBuilder: (_, __) => const Divider(
                               height: 0,
                             ),
                         itemCount: snapshot.data?.products?.length ?? 0),
