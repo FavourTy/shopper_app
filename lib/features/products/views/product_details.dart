@@ -15,14 +15,32 @@ class ProductDetailsScreen extends StatefulWidget {
 }
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
+  bool isNaira = true;
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
+        title: Text(
+          "Detailed Description",
+          style: style.copyWith(
+            fontSize: 20,
+            color: AppColors.white,
+          ),
+        ),
         iconTheme: const IconThemeData(color: AppColors.white),
         backgroundColor: AppColors.appColor,
+        actions: [
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  isNaira = !isNaira;
+                });
+              },
+              icon:
+                  Icon(isNaira ? Icons.currency_exchange : Icons.attach_money))
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -79,7 +97,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 ),
               ),
               Text(
-                widget.model?.price?.convertToNaira() ?? "",
+                isNaira
+                    ? (widget.model?.price?.convertToNaira() ?? "")
+                    : (widget.model?.price != null
+                        ? "\$${widget.model?.price}"
+                        : ""),
                 style: style.copyWith(
                   fontWeight: FontWeight.w600,
                   color: AppColors.appColor,

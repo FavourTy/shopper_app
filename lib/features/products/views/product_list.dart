@@ -109,7 +109,9 @@ class _ProductListScreenState extends State<ProductListScreen> {
                               trailing: Text(
                                 isNaira
                                     ? (each?.price?.convertToNaira() ?? "")
-                                    : (each?.price != null ? "" : ""),
+                                    : (each?.price != null
+                                        ? "\$${each?.price}"
+                                        : ""),
                                 style: style.copyWith(
                                   fontWeight: FontWeight.w600,
                                   color: AppColors.black,
