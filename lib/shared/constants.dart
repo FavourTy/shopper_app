@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sca_shopper/shared/colors.dart';
+import 'package:intl/intl.dart';
 
 const style = TextStyle(
   fontSize: 12,
@@ -74,5 +75,8 @@ final emailRegex = RegExp(
     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
 
 extension CurrencyConverter on num? {
-  String convertToNaira() => "₦${((this ?? 0) * 1650).toString()}";
+  String convertToNaira() {
+    final formatAmount = NumberFormat("#,##0", "en_NG");
+    return "₦${formatAmount.format((this ?? 0) * 1650)}";
+  }
 }
